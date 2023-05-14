@@ -13,6 +13,7 @@
     "@popperjs/core": "^2.11.6",
     "@reduxjs/toolkit": "^1.9.1",
     "aos": "^2.3.4",
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.1.1",
     "eslint": "8.28.0",
@@ -38,6 +39,7 @@
     "react-toastify": "^9.1.1",
     "sass": "^1.56.1",
     "sharp": "^0.31.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "swr": "^2.1.5"
   }
 }

@@ -2,19 +2,27 @@ const FormContent = () => {
   return (
     <form method="post" action="add-parcel.html">
       <div className="form-group">
-        <label>Email Address</label>
-        <input type="email" name="username" placeholder="Username" required />
+          <label>Nom Complet</label>
+          <input type="text" name="name" placeholder="name" required />
+          <span className="form-label-error"> error</span>
+        </div>
+        {/* name */}
+      <div className="form-group">
+        <label>Address Email</label>
+        <input type="email" name="email" placeholder="email" required />
+        <span className="form-label-error"> error</span>
       </div>
-      {/* name */}
+      {/* email */}
 
       <div className="form-group">
-        <label>Password</label>
+        <label>Mot de pass</label>
         <input
           id="password-field"
           type="password"
           name="password"
           placeholder="Password"
         />
+        <span className="form-label-error"> error</span>
       </div>
       {/* password */}
 

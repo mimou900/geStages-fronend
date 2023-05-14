@@ -1,22 +1,59 @@
 import Link from "next/link";
 import LoginWithSocial from "./LoginWithSocial";
+import { useState } from "react";
+import axios from "../../../../pages/api/axios";
+import { useRouter } from 'next/navigation';
+import useAuth from "../../../../pages/api/useAuth";
 
 const FormContent = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [remember, setRemember] = useState(false)
+  const [errors, setErrors] = useState([])
+
+  const {login, isLoading, user} = useAuth({middleware: 'guest'})
+
+  const submitForm = async event => {
+      event.preventDefault()
+
+      login({email, password, remember, setErrors});
+  }
+
+  if (isLoading || user) {
+      return <>Loading...</>
+  }
   return (
     <div className="form-inner">
-      <h3>Login to Superio</h3>
+      <h3>Se connecter a geStage</h3>
 
       {/* <!--Login Form--> */}
-      <form method="post">
+      <form onSubmit={submitForm}>
         <div className="form-group">
-          <label>Username</label>
-          <input type="text" name="username" placeholder="Username" required />
+          <label>Address Email</label>
+          <input 
+          id="email"
+          type="email"
+          value={email}
+          className="block mt-1 w-full"
+          onChange={event => setEmail(event.target.value)}
+          required
+          autoFocus
+          autoComplete="off" />
+          <span className="form-label-error">{errors}</span>
         </div>
-        {/* name */}
-
+        {/* email */}
+ 
         <div className="form-group">
-          <label>Password</label>
-          <input type="password" name="password" placeholder="Password" />
+          <label>Mot de pass</label>
+          <input 
+          id="password"
+          type="password"
+          value={password}
+          className="block mt-1 w-full"
+          onChange={event => setPassword(event.target.value)}
+          required
+          autoComplete="current-password" />
+          <span className="form-label-error">{errors}</span>
         </div>
         {/* password */}
 

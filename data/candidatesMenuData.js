@@ -22,14 +22,14 @@ module.exports = [
   },
   {
     id: 4,
-    name: "Liste des Stages",
+    name: "Mes Candidatures",
     icon: "la-briefcase",
     routePath: "/candidates-dashboard/applied-jobs",
     active: "",
   },
   {
     id: 5,
-    name: "Mes Candidatures",
+    name: "Liste des Stages",
     icon: "la la-bell",
     routePath: "/candidates-dashboard/job-alerts",
     active: "",

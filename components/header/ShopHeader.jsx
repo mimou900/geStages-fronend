@@ -41,7 +41,7 @@ const ShopHeader = () => {
           <div className="logo-box">
             <div className="logo">
               <Link href="/">
-                <img src="/images/logo.svg" alt="brand" />
+                <img src="/images/logo.png" alt="brand" />
               </Link>
             </div>
           </div>

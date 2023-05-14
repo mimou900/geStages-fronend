@@ -1,4 +1,5 @@
 import Aos from "aos";
+import { StagesProvider } from "../components/Context/StagesContext";
 import "aos/dist/aos.css";
 import "../styles/index.scss";
 import { useEffect } from "react";
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
+    <StagesProvider>
     <Provider store={store}>
       <div className="page-wrapper">
         <Component {...pageProps} />
@@ -44,6 +46,7 @@ function MyApp({ Component, pageProps }) {
         <ScrollToTop />
       </div>
     </Provider>
+    </StagesProvider>
   );
 }
 

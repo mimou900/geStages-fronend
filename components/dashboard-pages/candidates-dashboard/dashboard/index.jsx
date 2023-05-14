@@ -9,8 +9,18 @@ import CopyrightFooter from "../../CopyrightFooter";
 import JobApplied from "./components/JobApplied";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
-
+import StagesContext from "../../../Context/StagesContext";
+import { Link } from 'next/link';
+import { useContext } from "react";
 const Index = () => {
+  // const {token} = useContext(StagesContext);
+  
+  // if (!token){
+  //   return  <Link
+  //   href="/login"
+  // >
+  // </Link>
+  // }
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>

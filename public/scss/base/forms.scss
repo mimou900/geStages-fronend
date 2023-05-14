@@ -390,7 +390,7 @@ input:checked + .slider:before {
   border-color: #ff0000;
 }
 
-.default-form label.error {
+.default-form label.error, .form-label-error{
   display: block;
   font-weight: 500;
   font-size: 13px;
@@ -531,4 +531,8 @@ input:checked + .slider:before {
 .register-dual ul li.react-tabs__tab--selected .btn-style-four {
   background: #34a853;
   color: #fff;
+}
+
+.not-allowed{
+  cursor: not-allowed;
 }

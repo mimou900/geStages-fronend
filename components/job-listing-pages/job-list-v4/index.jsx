@@ -13,16 +13,16 @@ const index = () => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <LoginPopup />
+      {/* <LoginPopup />
       {/* End Login Popup Modal */}
 
-      <DefaulHeader2 />
+      {/* <DefaulHeader2 /> */}
       {/* End Header with upload cv btn */}
 
-      <MobileMenu />
+      {/* <MobileMenu /> */}
       {/* End MobileMenu */}
 
-      <Breadcrumb title="Find Jobs" meta="Jobs" />
+      {/* <Breadcrumb title="Find Jobs" meta="Jobs" /> */}
       {/* <!--End Breadcrumb Start--> */}
 
       <section className="ls-section">
@@ -47,14 +47,14 @@ const index = () => {
           </div>
           {/* End row */}
 
-          <CallToAction />
+          {/* <CallToAction /> */}
           {/* End calltoAction */}
         </div>
         {/* End container */}
       </section>
       {/* <!--End Listing Page Section --> */}
 
-      <FooterDefault footerStyle="alternate5" />
+      {/* <FooterDefault footerStyle="alternate5" /> */}
       {/* <!-- End Main Footer --> */}
     </>
   );
