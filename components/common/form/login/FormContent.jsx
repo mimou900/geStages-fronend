@@ -1,27 +1,42 @@
 import Link from "next/link";
 import LoginWithSocial from "./LoginWithSocial";
-import { useState } from "react";
-import axios from "../../../../pages/api/axios";
-import { useRouter } from 'next/navigation';
-import useAuth from "../../../../pages/api/useAuth";
+import { useState, useEffect } from "react";
+import { useAuthContext } from "../../../Context/AuthContext";
+import { useRouter } from "next/router";
 
 const FormContent = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [remember, setRemember] = useState(false)
-  const [errors, setErrors] = useState([])
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, error, user } = useAuthContext();
+  const [loggingIn, setLoggingIn] = useState(false);
+  const router = useRouter(); 
+  const submitForm = async (event) => {
+    event.preventDefault();
+    setLoggingIn(true);
 
-  const {login, isLoading, user} = useAuth({middleware: 'guest'})
+    await login({
+      email,
+      password,
+    });
+    setEmail('')
+    setPassword('')
+    
+    setLoggingIn(false);
+  };
 
-  const submitForm = async event => {
-      event.preventDefault()
+  useEffect(() => {
+    if (user) {
+      // User is authenticated, redirect based on role
+      if (user.role === 1) {
+        router.push("employers-dashboard/dashboard"); // Redirect to admin dashboard
+      } else if (user.role === 2) {
+        router.push("candidates-dashboard/dashboard"); // Redirect to candidate dashboard
+      } else if (user.role === 3){
+        router.push("maitre-dashboard/dashboard"); // Redirect to default page
+      }
+    }
+  }, [user, router]);
 
-      login({email, password, remember, setErrors});
-  }
-
-  if (isLoading || user) {
-      return <>Loading...</>
-  }
   return (
     <div className="form-inner">
       <h3>Se connecter a geStage</h3>
@@ -30,30 +45,34 @@ const FormContent = () => {
       <form onSubmit={submitForm}>
         <div className="form-group">
           <label>Address Email</label>
-          <input 
-          id="email"
-          type="email"
-          value={email}
-          className="block mt-1 w-full"
-          onChange={event => setEmail(event.target.value)}
-          required
-          autoFocus
-          autoComplete="off" />
-          <span className="form-label-error">{errors}</span>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            className="block mt-1 w-full"
+            onChange={event => setEmail(event.target.value)}
+            autoFocus
+            autoComplete="off"
+          />
+          {error.email && (
+            <span className="form-label-error">{error.email[0]}</span>
+          )}
         </div>
         {/* email */}
- 
+
         <div className="form-group">
           <label>Mot de pass</label>
-          <input 
-          id="password"
-          type="password"
-          value={password}
-          className="block mt-1 w-full"
-          onChange={event => setPassword(event.target.value)}
-          required
-          autoComplete="current-password" />
-          <span className="form-label-error">{errors}</span>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            className="block mt-1 w-full"
+            onChange={event => setPassword(event.target.value)}
+            autoComplete="current-password"
+          />
+          {error.password && (
+            <span className="form-label-error">{error.password[0]}</span>
+          )}
         </div>
         {/* password */}
 
@@ -65,7 +84,7 @@ const FormContent = () => {
                 <span className="custom-checkbox"></span> Remember me
               </label>
             </div>
-            <a href="#" className="pwd">
+            <a href="/forgotPassword" className="pwd">
               Forgot password?
             </a>
           </div>
@@ -77,8 +96,9 @@ const FormContent = () => {
             className="theme-btn btn-style-one"
             type="submit"
             name="log-in"
+            disabled={loggingIn}
           >
-            Log In
+            {loggingIn ? "veuillez patienter..." : "Log In"}
           </button>
         </div>
         {/* login */}

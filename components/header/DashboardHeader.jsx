@@ -5,23 +5,52 @@ import employerMenuData from "../../data/employerMenuData";
 import HeaderNavContent from "./HeaderNavContent";
 import { isActiveLink } from "../../utils/linkActiveChecker";
 import { useRouter } from "next/router";
-
+import { useAuthContext } from "../Context/AuthContext";
 const DashboardHeader = () => {
     const [navbar, setNavbar] = useState(false);
+  const { user, getUser } = useAuthContext();
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
-    const router = useRouter();
+  const changeBackground = () => {
+    if (window.scrollY >= 0) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
 
-    const changeBackground = () => {
-        if (window.scrollY >= 0) {
-            setNavbar(true);
-        } else {
-            setNavbar(false);
+  useEffect(() => {
+    window.addEventListener("scroll", changeBackground);
+    return () => {
+      window.removeEventListener("scroll", changeBackground);
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+        try{
+            await getUser();
+      setLoading(false);
+        }catch(e){
+            router.push("/login");
         }
+      
     };
 
-    useEffect(() => {
-        window.addEventListener("scroll", changeBackground);
-    }, []);
+    if (!user) {
+      fetchUser();
+    } else {
+      setLoading(false);
+    }
+  }, [user, getUser]);
+
+  if (loading) {
+    // Render loading state or spinner while fetching user data
+    return <div>Loading...</div>;
+  }
+
+  
 
     return (
         // <!-- Main Header-->
@@ -50,16 +79,13 @@ const DashboardHeader = () => {
                         </div>
                         {/* End .logo-box */}
 
-                        <HeaderNavContent />
+                        
                         {/* <!-- Main Menu End--> */}
                     </div>
                     {/* End .nav-outer */}
 
                     <div className="outer-box">
-                        <button className="menu-btn">
-                            <span className="count">1</span>
-                            <span className="icon la la-heart-o"></span>
-                        </button>
+                        
                         {/* wishlisted menu */}
 
                         <button className="menu-btn">

@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "../app/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "../components/Context/AuthContext";
 
 if (typeof window !== "undefined") {
   require("bootstrap/dist/js/bootstrap");
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
+    <AuthProvider>
     <StagesProvider>
     <Provider store={store}>
       <div className="page-wrapper">
@@ -47,6 +49,7 @@ function MyApp({ Component, pageProps }) {
       </div>
     </Provider>
     </StagesProvider>
+    </AuthProvider>
   );
 }
 

@@ -4,7 +4,7 @@ import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import ChatBox from "./components";
+// import ChatBox from "./components";
 import MenuToggler from "../../MenuToggler";
 import { useSelector } from "react-redux";
 
@@ -15,7 +15,7 @@ const Index = () => {
       <span className="header-span"></span>
       {/* <!-- Header Span for hight --> */}
 
-      <LoginPopup />
+      
       {/* End Login Popup Modal */}
 
       <DashboardHeader />
@@ -30,7 +30,7 @@ const Index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Messages!" />
+          <BreadCrumb title="Liste Stages" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -44,7 +44,7 @@ const Index = () => {
             >
               <div className="chat-widget">
                 <div className="widget-content">
-                  <ChatBox />
+                  {/* <ChatBox /> */}
                 </div>
               </div>
               {/* <!-- Chat Widget --> */}

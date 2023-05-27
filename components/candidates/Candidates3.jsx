@@ -2,6 +2,7 @@ import Link from "next/link";
 import candidates from "../../data/candidates";
 
 const Candidates3 = () => {
+  
   return (
     <>
       {candidates.slice(12, 17).map((candidate) => (
@@ -10,7 +11,7 @@ const Candidates3 = () => {
           key={candidate.id}
         >
           <div className="image">
-            <img src={candidate.avatar} alt="image" />
+            <img  alt="image" />
           </div>
 
           <div className="content">

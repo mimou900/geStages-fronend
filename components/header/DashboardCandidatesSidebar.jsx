@@ -6,7 +6,7 @@ import { isActiveLink } from "../../utils/linkActiveChecker";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { menuToggle } from "../../features/toggle/toggleSlice";
-
+import { useAuthContext } from "../Context/AuthContext";
 const DashboardCandidatesSidebar = () => {
     const { menu } = useSelector((state) => state.toggle);
     const percentage = 30;
@@ -17,6 +17,7 @@ const DashboardCandidatesSidebar = () => {
     const menuToggleHandler = () => {
         dispatch(menuToggle());
     };
+    const { logout } = useAuthContext();
 
     return (
         <div className={`user-sidebar ${menu ? "sidebar_open" : ""}`}>
@@ -48,7 +49,18 @@ const DashboardCandidatesSidebar = () => {
                                 {item.name}
                             </Link>
                         </li>
+                        
                     ))}
+                    <li
+                            className={`mb-1`}
+                            key={11}
+                            
+                        >
+                            <Link href='/login' onClick={logout}>
+                                <i className={`la la-sign-out`}></i>{" "}
+                                Se Deconnecter
+                            </Link>
+                        </li>
                     
                 </ul>
                 </div>

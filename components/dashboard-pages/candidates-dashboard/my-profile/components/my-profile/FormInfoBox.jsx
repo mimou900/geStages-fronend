@@ -1,28 +1,23 @@
 import Select from "react-select";
 import { useContext, useEffect } from "react";
 import StagesContext from "../../../../../Context/StagesContext";
+import { useAuth } from "../../../../../../pages/api/useAuth";
+import { useAuthContext } from "../../../../../Context/AuthContext";
+
 const FormInfoBox = () => {
+  const { user, getUser } = useAuthContext();
+  const { etudiant, getEtudiant } = useContext(StagesContext);
 
-  const {etudiant, getEtudiant, id} = useContext(StagesContext);
   useEffect(() => {
-  
+    const fetchData = async () => {
+      await getUser();
+      if (user?.id) {
+        await getEtudiant(user.id);
+      }
+    };
 
-    getEtudiant(id);
+    fetchData();
   }, []);
-
-
-
-  const catOptions = [
-    { value: "Banking", label: "Banking" },
-    { value: "Digital & Creative", label: "Digital & Creative" },
-    { value: "Retail", label: "Retail" },
-    { value: "Human Resources", label: "Human Resources" },
-    { value: "Managemnet", label: "Managemnet" },
-    { value: "Accounting & Finance", label: "Accounting & Finance" },
-    { value: "Digital", label: "Digital" },
-    { value: "Creative Art", label: "Creative Art" },
-  ];
-
   return (
     
     <form action="#" className="default-form">
@@ -32,7 +27,7 @@ const FormInfoBox = () => {
           <label>Nom</label>
           <input type="text" 
           name="name" 
-          value={etudiant.nom}
+          value={user?.name}
           className="not-allowed"
           readOnly="readOnly"/>
         </div>
@@ -43,7 +38,7 @@ const FormInfoBox = () => {
           <input type="text" 
           name="name" 
           className="not-allowed"
-          value={etudiant.prenom} 
+          value={user?.prenom} 
           readOnly="readOnly"/>
         </div>
 
@@ -55,7 +50,7 @@ const FormInfoBox = () => {
           className="not-allowed"
             type="text"
             name="name"
-            placeholder="creativelayers"
+            value={user?.email} 
             readOnly="readOnly"
           />
         </div>

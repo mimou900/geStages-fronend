@@ -26,10 +26,10 @@ const JobListingsTable = () => {
           <table className="default-table manage-job-table">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Applications</th>
-                <th>Created & Expired</th>
-                <th>Status</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Entreprise</th>
+                {/* <th>Theme</th> */}
                 <th>Action</th>
               </tr>
             </thead>

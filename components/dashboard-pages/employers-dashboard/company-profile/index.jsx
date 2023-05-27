@@ -15,7 +15,7 @@ const index = () => {
             <span className="header-span"></span>
             {/* <!-- Header Span for hight --> */}
 
-            <LoginPopup />
+          
             {/* End Login Popup Modal */}
 
             <DashboardHeader />
@@ -30,7 +30,7 @@ const index = () => {
             {/* <!-- Dashboard --> */}
             <section className="user-dashboard">
                 <div className="dashboard-outer">
-                    <BreadCrumb title="Company Profile!" />
+                    
                     {/* breadCrumb */}
 
                     <MenuToggler />
@@ -41,24 +41,24 @@ const index = () => {
                             <div className="ls-widget">
                                 <div className="tabs-box">
                                     <div className="widget-title">
-                                        <h4>My Profile</h4>
+                                        <h4>Mon Profile</h4>
                                     </div>
                                     <MyProfile />
                                 </div>
                             </div>
                             {/* <!-- Ls widget --> */}
 
-                            <div className="ls-widget">
+                            {/* <div className="ls-widget">
                                 <div className="tabs-box">
                                     <div className="widget-title">
                                         <h4>Social Network</h4>
                                     </div>
                                     {/* End .widget-title */}
-                                    <div className="widget-content">
+                                    {/* <div className="widget-content">
                                         <SocialNetworkBox />
-                                    </div>
-                                </div>
-                            </div>
+                                    </div> */}
+                                {/* </div>
+                            </div>  */}
                             {/* <!-- Ls widget --> */}
 
                             <div className="ls-widget">

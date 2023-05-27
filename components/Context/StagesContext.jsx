@@ -1,49 +1,41 @@
 import { useState, createContext } from "react";
-import axios from "axios";
-axios.defaults.baseURL = "http://127.0.0.1:8000/";
-axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-axios.defaults.withCredentials = true;
+import axios from "../../pages/api/axios";
 import { useRouter } from 'next/navigation';
 
-const StagesContext = createContext({
-    user: null,
-    token: null,
-    setUser: () => {},
-    setToken: () => {localStorage.getItem('ACCESS_TOKEN')},
-});
+
+
+const StagesContext = createContext();
 export const StagesProvider = ({children}) => {
   const [showMessage, setShowMessage] = useState(false);
   const [val, setVal] = useState("");
   const [Style1, setStyle1] = useState("");
-    const [stages, setStages] = useState([]);
+  const [stages, setStages] = useState([]);
+    const [etudiants, setEtudiants] = useState([]);
     const [stage, setStage] = useState([]);
-    const [errors, setErrors] = useState({});
+    const [error, setError] = useState([]);
     const router = useRouter();
-    const[user, setUser] = useState({});
-    const[token, _setToken] = useState();
     const [etudiant, setEtudiant] = useState([]);
-    var id = 2;
     const[message, setMessage] = useState();
 
-    const setToken = (token) => {
-        _setToken(token)
-        if (token){
-            localStorage.setItem('ACCESS_TOKEN', token)
-        }else{
-            localStorage.removeItem('ACCESS_TOKEN')
-        }
-    }
+   
 
 
-    const getStages = async () => {
+    const getStages = async (id) => {
+      try {
+        const apiStages = await axios.get("api/Etudiant/stages/"+id);
+        setStages(apiStages.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+      const getEtudiants = async () => {
         try {
-          const apiStages = await axios.get("api/stages");
-          setStages(apiStages.data);
+          const apiEtudiants = await axios.get("api/Etudiants");
+          setEtudiants(apiEtudiants.data);
         } catch (error) {
           console.error(error);
         }
       };
-    
     const getStage = async (id) => {
         const response = await axios.get("api/stages/" + id);
         setStage(response.data);
@@ -55,32 +47,22 @@ export const StagesProvider = ({children}) => {
       };
 
 
-      const [formValues, setFormValues] = useState({
-        titre: "",
-        dateDebut: "",
-        dateFin: "",
-        description: "",
-      });
       
-    
-      const onChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-      };
-    
-      const addStage = async (e) => {
-        e.preventDefault();
+      
+      const addStage = async (formValues) => {
+        await getCsrfToken();
+      
         try {
           await axios.post("api/addStage", formValues);
-          getStages();
-          router.push("/candidates-dashboard/applied-jobs");
+          router.push('/candidates-dashboard/applied-jobs');
         } catch (e) {
-          if (e.response.status === 442) {
-            setErrors(e.response.data.errors);
+          if (e.response && e.response.status === 442) {
+            setError(e.response.data.errors);
           }
         }
       };
-    //complete profile
+      
+      
     const [formProfileValues, setFormProfileValues] = useState({
         dateNaissance: "",
         numCarte: "",
@@ -99,30 +81,26 @@ export const StagesProvider = ({children}) => {
       
 
 // Fetch CSRF token
-const getCsrfToken = async () => {
-  
-    await axios.get("/sanctum/csrf-cookie");
-    
+const getCsrfToken = () => axios.get('/sanctum/csrf-cookie');
+
+
+
+
+const CompleteProfile = async ({ id, dateNaissance, numCarte, numSocial, numTel }) => {
+  await getCsrfToken();
+  try {
+    await axios.put("/api/Etudiant/completer-mon-profile/"+id, { dateNaissance, numCarte, numSocial, numTel });
+    setMessage("bien change");
+    setShowMessage(true);
+  } catch (e) {
+    if (e) {
+      console.log('retry')
+    }
+  }
 };
 
-
-
-    
-const CompleteProfile = async (e) => {
-    e.preventDefault();
+  const checkProfileIfCompleted = async() => {
     await getCsrfToken();
-    try {
-      await axios.put("/api/Etudiant/completer-mon-profile/"+id, formProfileValues);
-      setMessage("bien change");
-      setShowMessage(true);
-    } catch (e) {
-      if (e.response.status === 422) {
-        setErrors(e.response.data.errors);
-      }
-    }
-  };
-  
-  const checkProfileIfCompleted = () => {
     var valu = etudiant.dateNaissance;
     var v2 = etudiant.numCarte;
     var v3 = etudiant.numSocial;
@@ -137,29 +115,29 @@ const CompleteProfile = async (e) => {
     }
   };
 
-    return <StagesContext.Provider value={{user, 
-        token, 
-        setUser, 
-        setToken, 
+    return <StagesContext.Provider value={{
         stage, 
         stages, 
+        error,
         getStage, 
         getStages, 
-        onChange, 
-        formValues, 
+         
         addStage,
         getEtudiant,
         etudiant,
         formProfileValues,
         onChanging,
         CompleteProfile,
-        id,
         message,
         Style1,
         checkProfileIfCompleted,
         val,
         showMessage,
         setShowMessage,
+        etudiants,
+        getCsrfToken,
+        getEtudiants,
+        
     }}>{children}</StagesContext.Provider>
 }
 

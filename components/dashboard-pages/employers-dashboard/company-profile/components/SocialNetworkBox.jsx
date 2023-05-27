@@ -4,32 +4,32 @@ const SocialNetworkBox = () => {
       <div className="row">
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Facebook</label>
+          <label>Numero Telephone</label>
           <input
             type="text"
             name="name"
-            placeholder="www.facebook.com/Invision"
+            placeholder=""
             required
           />
         </div>
 
         {/* <!-- Input --> */}
-        <div className="form-group col-lg-6 col-md-12">
+        {/* <div className="form-group col-lg-6 col-md-12">
           <label>Twitter</label>
           <input type="text" name="name" placeholder="" required />
-        </div>
+        </div> */}
 
         {/* <!-- Input --> */}
-        <div className="form-group col-lg-6 col-md-12">
+        {/* <div className="form-group col-lg-6 col-md-12">
           <label>Linkedin</label>
           <input type="text" name="name" placeholder="" required />
-        </div>
+        </div> */}
 
         {/* <!-- Input --> */}
-        <div className="form-group col-lg-6 col-md-12">
+        {/* <div className="form-group col-lg-6 col-md-12">
           <label>Google Plus</label>
           <input type="text" name="name" placeholder="" required />
-        </div>
+        </div> */}
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
@@ -43,3 +43,8 @@ const SocialNetworkBox = () => {
 };
 
 export default SocialNetworkBox;
+
+
+
+
+

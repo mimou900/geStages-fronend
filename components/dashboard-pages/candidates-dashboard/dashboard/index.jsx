@@ -11,22 +11,16 @@ import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader
 import MenuToggler from "../../MenuToggler";
 import StagesContext from "../../../Context/StagesContext";
 import { Link } from 'next/link';
-import { useContext } from "react";
+import { useAuthContext } from "../../../Context/AuthContext";
+import { useEffect } from "react";
 const Index = () => {
-  // const {token} = useContext(StagesContext);
-  
-  // if (!token){
-  //   return  <Link
-  //   href="/login"
-  // >
-  // </Link>
-  // }
+
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
       {/* <!-- Header Span for hight --> */}
 
-      <LoginPopup />
+      
       {/* End Login Popup Modal */}
 
       <DashboardCandidatesHeader />

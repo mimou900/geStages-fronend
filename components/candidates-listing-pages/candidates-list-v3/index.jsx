@@ -9,17 +9,7 @@ const Index = () => {
   return (
     <>
       {/* <!-- Header Span --> */}
-      <span className="header-span"></span>
-
-      <LoginPopup />
-      {/* End Login Popup Modal */}
-
-      <DefaulHeader2 />
-      {/* End Header with upload cv btn */}
-
-      <MobileMenu />
-      {/* End MobileMenu */}
-
+      
       <section className="page-title style-two">
         <div className="auto-container">
           <JobSearchForm />
@@ -45,7 +35,6 @@ const Index = () => {
       </section>
       {/* <!--End Listing Page Section --> */}
 
-      <FooterDefault footerStyle="alternate5" />
       {/* <!-- End Main Footer --> */}
     </>
   );

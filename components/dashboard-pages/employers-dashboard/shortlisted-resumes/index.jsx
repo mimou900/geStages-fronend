@@ -14,7 +14,7 @@ const index = () => {
       <span className="header-span"></span>
       {/* <!-- Header Span for hight --> */}
 
-      <LoginPopup />
+     
       {/* End Login Popup Modal */}
 
       <DashboardHeader />
@@ -29,7 +29,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Shortlisted Resumes!" />
+         
           {/* breadCrumb */}
 
           <MenuToggler />

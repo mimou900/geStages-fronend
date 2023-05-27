@@ -1,10 +1,11 @@
-import axios from "axios";
+import Axios from "axios"
 
-export default axios.create({
-    
-    baseURL: "http://127.0.0.1:8000",
-    headers: {
-        'X-Requested-With' : 'XMLHttpRequest'
-    },
-    withCredentials: true,
+const axios = Axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+  headers: {
+    "X-Requested-With": "XMLHttpRequest",
+  },
+  withCredentials: true,
 })
+
+export default axios

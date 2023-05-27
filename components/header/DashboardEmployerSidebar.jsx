@@ -4,9 +4,11 @@ import { isActiveLink } from "../../utils/linkActiveChecker";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { menuToggle } from "../../features/toggle/toggleSlice";
+import { useAuthContext } from "../Context/AuthContext";
 
 const DashboardEmployerSidebar = () => {
     const router = useRouter();
+    const {logout} = useAuthContext();
     const { menu } = useSelector((state) => state.toggle);
 
     const dispatch = useDispatch();
@@ -43,6 +45,16 @@ const DashboardEmployerSidebar = () => {
                             </Link>
                         </li>
                     ))}
+                    <li
+                            className={`mb-1`}
+                            key={11}
+                            onClick={logout}
+                        >
+                            <Link href='/login'>
+                                <i className={`la la-sign-out`}></i>{" "}
+                                Se Deconnecter
+                            </Link>
+                        </li>
                 </ul>
             </div>
         </div>

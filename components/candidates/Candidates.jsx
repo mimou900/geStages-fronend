@@ -46,7 +46,7 @@ const Candidates = () => {
               <figure className="image">
                 <img src={candidate.avatar} alt="avatar" />
               </figure>
-              <h4 className="name">{candidate.name}</h4>
+              <h4 className="name">okk</h4>
               <span className="designation">{candidate.designation}</span>
               <div className="location">
                 <i className="flaticon-map-locator"></i> {candidate.location}

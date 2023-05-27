@@ -14,7 +14,7 @@ const index = () => {
       <span className="header-span"></span>
       {/* <!-- Header Span for hight --> */}
 
-      <LoginPopup />
+      
       {/* End Login Popup Modal */}
 
       <DashboardCandidatesHeader />

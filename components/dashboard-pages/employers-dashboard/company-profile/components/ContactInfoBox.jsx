@@ -1,102 +1,75 @@
 import Map from "../../../Map";
+import Select from "react-select";
 
 const ContactInfoBox = () => {
-    return (
-        <form className="default-form">
-            <div className="row">
-                {/* <!-- Input --> */}
-                <div className="form-group col-lg-6 col-md-12">
-                    <label>Country</label>
-                    <select className="chosen-single form-select" required>
-                        <option>Australia</option>
-                        <option>Pakistan</option>
-                        <option>Chaina</option>
-                        <option>Japan</option>
-                        <option>India</option>
-                    </select>
-                </div>
+  const catOptions = [
+    { value: "constantine 1", label: "constantine 1" },
+    { value: "constantine 2", label: "constantine 2" },
+    { value: "constantine 3", label: "constantine 3" },
+];
+const catOptions1 = [
+  { value: "nouvelles technologies", label: "nouvelles technologies" },
+  { value: "sciences humaines et sociales", label: "sciences humaines et sociales" },
+  { value: "psychologie", label: "psychologie" },
+];
+const catOptions2 = [
+  { value: "Tronc Commun INFO : Licence Informatique", label: "Tronc Commun INFO : Licence Informatique" },
+  { value: "Informatique Fondamentale et ses Applications IFA", label: "Informatique Fondamentale et ses Applications IFA" },
+  { value: "Technologies des Logiciels et des Systèmes d’Information TLSI", label: "Technologies des Logiciels et des Systèmes d’Information TLSI" },
+];
 
-                {/* <!-- Input --> */}
-                <div className="form-group col-lg-6 col-md-12">
-                    <label>City</label>
-                    <select className="chosen-single form-select" required>
-                        <option>Melbourne</option>
-                        <option>Pakistan</option>
-                        <option>Chaina</option>
-                        <option>Japan</option>
-                        <option>India</option>
-                    </select>
-                </div>
-
-                {/* <!-- Input --> */}
-                <div className="form-group col-lg-12 col-md-12">
-                    <label>Complete Address</label>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="329 Queensberry Street, North Melbourne VIC 3051, Australia."
-                        required
+  return (
+    <form className="default-form">
+      <div className="row">
+        {/* <!-- Input --> */}
+        <div className="form-group col-lg-12 col-md-12">
+                    <label>université</label>
+                    <Select
+                        defaultValue={[catOptions[1]]}
+                        
+                        name="colors"
+                        options={catOptions}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
                     />
                 </div>
 
-                {/* <!-- Input --> */}
-                <div className="form-group col-lg-6 col-md-12">
-                    <label>Find On Map</label>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="329 Queensberry Street, North Melbourne VIC 3051, Australia."
-                        required
+        {/* <!-- Input --> */}
+        <div className="form-group col-lg-6 col-md-12">
+                    <label>Faculté</label>
+                    <Select
+                        
+                        
+                        name="colors"
+                        options={catOptions1}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
                     />
                 </div>
 
-                {/* <!-- Input --> */}
-                <div className="form-group col-lg-3 col-md-12">
-                    <label>Latitude</label>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Melbourne"
-                        required
+        {/* <!-- Input --> */}
+        <div className="form-group col-lg-6 col-md-12">
+                    <label>Departement</label>
+                    <Select
+                        name="colors"
+                        options={catOptions2}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
                     />
                 </div>
 
-                {/* <!-- Input --> */}
-                <div className="form-group col-lg-3 col-md-12">
-                    <label>Longitude</label>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Melbourne"
-                        required
-                    />
-                </div>
 
-                {/* <!-- Input --> */}
-                <div className="form-group col-lg-12 col-md-12">
-                    <button className="theme-btn btn-style-three">
-                        Search Location
-                    </button>
-                </div>
-
-                <div className="form-group col-lg-12 col-md-12">
-                    <div className="map-outer">
-                        <div style={{ height: "420px", width: "100%" }}>
-                            <Map />
-                        </div>
-                    </div>
-                </div>
-                {/* End MapBox */}
-
-                {/* <!-- Input --> */}
-                <div className="form-group col-lg-12 col-md-12">
-                    <button type="submit" className="theme-btn btn-style-one">
-                        Save
-                    </button>
-                </div>
-            </div>
-        </form>
-    );
+        {/* <!-- Input --> */}
+        
+        {/* <!-- Input --> */}
+        <div className="form-group col-lg-12 col-md-12">
+          <button type="submit" className="theme-btn btn-style-one">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  );
 };
 
 export default ContactInfoBox;

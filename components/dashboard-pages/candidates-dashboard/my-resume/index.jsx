@@ -6,14 +6,17 @@ import CopyrightFooter from "../../CopyrightFooter";
 import Resume from "./components";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
+import { useAuth } from "../../../../pages/api/useAuth";
+
 
 const index = () => {
+  const { user } = useAuth({ middleware: 'auth' })
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
       {/* <!-- Header Span for hight --> */}
 
-      <LoginPopup />
+      
       {/* End Login Popup Modal */}
 
       <DashboardCandidatesHeader />

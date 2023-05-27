@@ -9,7 +9,7 @@ const index = () => {
       <Header />
       {/* <!--End Main Header -->  */}
 
-      <LoginPopup />
+      
       {/* End Login Popup Modal */}
 
       <MobileMenu />

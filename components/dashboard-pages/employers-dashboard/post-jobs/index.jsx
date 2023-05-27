@@ -4,9 +4,10 @@ import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import PostJobSteps from "./components/PostJobSteps";
+// import PostJobSteps from "./components/PostJobSteps";
 import PostBoxForm from "./components/PostBoxForm";
 import MenuToggler from "../../MenuToggler";
+import CandidatesListV3 from "../../../../pages/candidates-list-v3";
 
 const index = () => {
   return (
@@ -14,7 +15,7 @@ const index = () => {
       <span className="header-span"></span>
       {/* <!-- Header Span for hight --> */}
 
-      <LoginPopup />
+    
       {/* End Login Popup Modal */}
 
       <DashboardHeader />
@@ -29,7 +30,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Post a New Job!" />
+          
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -45,9 +46,9 @@ const index = () => {
                   </div>
 
                   <div className="widget-content">
-                    <PostJobSteps />
+                    {/* <PostJobSteps /> */}
                     {/* End job steps form */}
-                    <PostBoxForm />
+                    <CandidatesListV3 />
                     {/* End post box form */}
                   </div>
                 </div>

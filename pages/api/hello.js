@@ -1,5 +1,10 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { getSession } from "next-auth/react"
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+/** @type {import("next").NextApiHandler} */
+export default async function handler(req, res) {
+  const session = await getSession({ req });
+  const msg = "Hello! Wellcome Back "+ (session?.user?.name || "Guest");
+  res.json({
+    msg
+  })
 }
